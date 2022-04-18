@@ -53,7 +53,10 @@ function init (data) {
             case 'bt':
                 (async function () {
                     const makeFetch = require('bittorrent-fetch')
-                    const fetch = makeFetch({})
+                    const ed = require('ed25519-supercop')
+                    const WebTorrent = require('webtorrent')
+                    const webtorrent = new WebTorrent({ dht: { verify: ed.verify } })
+                    const fetch = makeFetch({webtorrent})
                     try {
                         const response = await fetch(parsed.url)
                         const stream = Readable.from(response.body)
@@ -66,8 +69,15 @@ function init (data) {
                 break
             case 'gun':
                 (async function () {
+                    const relays = [
+                        'https://relay.peer.ooo/gun',
+                        'https://gun-eu.herokuapp.com/gun',
+                        'https://gunjs.herokuapp.com/gun',
+                        'https://fire-gun.herokuapp.com/gun'
+                      ]
                     const makeFetch = require('gun-fetch')
-                    const fetch = makeFetch({relay: true})
+                    const Gun = require('gun')
+                    const fetch = makeFetch({gun: new Gun({peers: relays})})
                     try {
                         const response = await fetch(parsed.url)
                         const stream = Readable.from(response.body)
@@ -107,27 +117,41 @@ function init (data) {
                 break
             case 'dat':
                 (async function () {
-                    const fetch = require('dat-fetch')()
+                    const sdk = await SDK({})
+                    const { Hyperdrive } = sdk
+                    const makeFetch = require('dat-fetch')
+                    const fetch = makeFetch({
+                        Hyperdrive,
+                        writable: false
+                      })
                     try {
                         const response = await fetch(parsed.url)
                         const stream = Readable.from(response.body)
                         stream.pipe(process.stdout)
                         await eosp(stream)
                     } finally {
+                        await fetch.close()
                         process.exit()
                     }
                 })()
                 break
             case 'hyper':
                 (async function () {
-                    const fetch = require('hypercore-fetch')()
+                    const sdk = await SDK({})
+                    const { Hyperdrive } = sdk
+                    const makeFetch = require('hypercore-fetch')
+                    const fetch = makeFetch({
+                        Hyperdrive,
+                        writable: false
+                      })
                     try {
                         const response = await fetch(parsed.url)
                         const stream = Readable.from(response.body)
                         stream.pipe(process.stdout)
                         await eosp(stream)
                     } finally {
-                        fetch.close()
+                        await fetch.close()
+                        process.exit()
                     }
                 })()
                 break
@@ -135,9 +159,9 @@ function init (data) {
             case 'ipns':
                 (async function () {
                     const IPFS = require('ipfs')
-                    const makeIpfsFetch = require('js-ipfs-fetch')
+                    const makeFetch = require('js-ipfs-fetch')
                     const ipfs = await IPFS.create({ silent: true })
-                    const fetch = await makeIpfsFetch({ ipfs })
+                    const fetch = await makeFetch({ ipfs })
                     try {
                         const response = await fetch(parsed.url)
                         const stream = Readable.from(response.body)

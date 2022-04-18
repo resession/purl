@@ -1,7 +1,7 @@
 {
   "name": "purl",
-  "version": "0.0.2",
-  "description": "cURL for Distributed Web command line",
+  "version": "1.0.1",
+  "description": "pURL for Distributed Web command line",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -14,12 +14,16 @@
     "bittorrent-fetch": "^1.0.6",
     "dat-fetch": "^5.1.1",
     "dat-sdk": "^2.8.1",
+    "ed25519-supercop": "^2.0.1",
     "gemini-fetch": "^1.0.0",
+    "gun": "^0.2020.1236",
     "gun-fetch": "^3.3.3",
+    "hyper-sdk": "^3.0.9",
     "hypercore-fetch": "^8.5.0",
     "ipfs": "^0.62.2",
     "js-ipfs-fetch": "^3.5.1",
-    "ssb-fetch": "^1.4.0"
+    "ssb-fetch": "^1.4.0",
+    "webtorrent": "^1.8.13"
   },
   "bin": {
     "purl": "bin.js"
