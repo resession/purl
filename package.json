@@ -1,0 +1,42 @@
+{
+  "name": "purl",
+  "version": "0.0.2",
+  "description": "cURL for Distributed Web command line",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/resession/purl.git"
+  },
+  "author": "Josemar Lohn <j@lo.hn>",
+  "license": "SEE LICENSE IN LICENSE",
+  "private": false,
+  "dependencies": {
+    "dat-fetch": "^5.1.1",
+    "dat-sdk": "^2.8.1",
+    "gemini-fetch": "^1.0.0",
+    "hypercore-fetch": "^6.0.1",
+    "ipfs": "^0.54.4",
+    "js-ipfs-fetch": "^1.4.2",
+    "parse-curl": "^0.2.6"
+  },
+  "bin": {
+    "purl": "bin.js"
+  },
+  "bugs": {
+    "url": "https://github.com/resession/purl/issues"
+  },
+  "homepage": "https://github.com/resession/purl#readme",
+  "devDependencies": {},
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "curl",
+    "distributed",
+    "fetch",
+    "ipfs",
+    "hypercore",
+    "dat",
+    "gemini"
+  ]
+}
