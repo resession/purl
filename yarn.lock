@@ -2960,7 +2960,7 @@
     "gun" "github:amark/gun"
     "make-fetch" "^2.3.1"
 
-"gun@^0.2020.1236", "gun@github:amark/gun":
+"gun@github:amark/gun":
   "resolved" "git+ssh://git@github.com/amark/gun.git#9d94b433d0e3ec95d29082f27572caa3b3a2505b"
   "version" "0.2020.1236"
   dependencies:

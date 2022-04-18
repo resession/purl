@@ -1,6 +1,6 @@
 {
   "name": "purl",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "pURL for Distributed Web command line",
   "main": "index.js",
   "repository": {
@@ -16,7 +16,7 @@
     "dat-sdk": "^2.8.1",
     "ed25519-supercop": "^2.0.1",
     "gemini-fetch": "^1.0.0",
-    "gun": "^0.2020.1236",
+    "gun": "github:amark/gun",
     "gun-fetch": "^3.3.3",
     "hyper-sdk": "^3.0.9",
     "hypercore-fetch": "^8.5.0",
