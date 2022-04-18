@@ -10,7 +10,7 @@ var parsed
 const helpString =
     `${pkg.description}
 Usage
-  $ curld <curl_command>
+  $ purl <curl_command>
   
 Options
   -v, --version	Print version
